@@ -10,13 +10,11 @@ import { MortgageCalculator } from "@/components/MortgageCalculator";
 import { ConsultationForm } from "@/components/ConsultationForm";
 import Footer from "@/components/Footer";
 import FloorPlanModal from "@/components/FloorPlanModal";
-import AdminCrudModal from "@/components/AdminCrudModal";
 import { Property } from "@/lib/types";
 
 export default function HomePage() {
   const [selectedPlanProperty, setSelectedPlanProperty] = useState<Property | null>(null);
   const [isPlanOpen, setIsPlanOpen] = useState<boolean>(false);
-  const [isAdminOpen, setIsAdminOpen] = useState<boolean>(false);
   const [selectedVillaName, setSelectedVillaName] = useState<string>("The OXID Cantilever Villa");
   const [refreshKey, setRefreshKey] = useState<number>(0);
 
@@ -33,15 +31,10 @@ export default function HomePage() {
     }
   };
 
-  const handlePropertiesUpdated = () => {
-    setRefreshKey((prev) => prev + 1);
-  };
-
   return (
     <div className="min-h-screen bg-white text-stone-900 flex flex-col font-sans selection:bg-stone-900 selection:text-white">
-      {/* Top Navbar */}
+      {/* Top Refined Navbar */}
       <Navbar 
-        onOpenAdmin={() => setIsAdminOpen(true)} 
         onOpenSearch={() => {
           const catElem = document.getElementById("catalog");
           if (catElem) catElem.scrollIntoView({ behavior: "smooth" });
@@ -49,13 +42,13 @@ export default function HomePage() {
       />
 
       <main className="flex-1 w-full flex flex-col items-center">
-        {/* Hero Section */}
+        {/* Modernist Hero Section with Depth (Text BEHIND House & Nano Banana Image) */}
         <Hero onOpenConsult={() => {
           const consultElem = document.getElementById("consult");
           if (consultElem) consultElem.scrollIntoView({ behavior: "smooth" });
         }} />
 
-        {/* Live Dynamic Catalog (Backend CRUD-connected) */}
+        {/* Live Dynamic Catalog Preview */}
         <div id="catalog" className="w-full">
           <PropertyCatalog
             onSelectPlan={handleOpenPlan}
@@ -64,42 +57,35 @@ export default function HomePage() {
           />
         </div>
 
-        {/* Philosophy & Craft */}
+        {/* Architectural Philosophy & Sustainable Craft */}
         <div id="philosophy" className="w-full">
           <Philosophy />
         </div>
 
-        {/* Exclusive Amenities */}
+        {/* Exclusive Living Amenities */}
         <div id="amenities" className="w-full">
           <Amenities />
         </div>
 
-        {/* Financial & Mortgage Simulator */}
+        {/* Dynamic Financial Mortgage Simulator */}
         <div id="calculator" className="w-full">
           <MortgageCalculator />
         </div>
 
-        {/* Consultation & Private Tour Booking */}
+        {/* Consultation & Private Tour Reservation */}
         <div id="consult" className="w-full">
           <ConsultationForm selectedVilla={selectedVillaName} />
         </div>
       </main>
 
-      {/* Footer */}
-      <Footer onOpenAdmin={() => setIsAdminOpen(true)} />
+      {/* Global Minimalist Luxury Footer */}
+      <Footer />
 
-      {/* CAD Floor Plan Blueprint Modal */}
+      {/* Interactive CAD Floor Plan Blueprint Modal */}
       <FloorPlanModal
         isOpen={isPlanOpen}
         property={selectedPlanProperty}
         onClose={() => setIsPlanOpen(false)}
-      />
-
-      {/* Admin CRUD Modal (Direct Database Management) */}
-      <AdminCrudModal
-        isOpen={isAdminOpen}
-        onClose={() => setIsAdminOpen(false)}
-        onPropertiesUpdated={handlePropertiesUpdated}
       />
     </div>
   );

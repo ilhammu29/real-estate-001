@@ -3,7 +3,8 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight, Camera } from "lucide-react";
+import { motion } from "framer-motion";
+import { ArrowUpRight, Camera, Sparkles, Compass, ShieldCheck } from "lucide-react";
 
 interface HeroProps {
   onOpenConsult?: () => void;
@@ -11,177 +12,183 @@ interface HeroProps {
 
 export const Hero: React.FC<HeroProps> = ({ onOpenConsult }) => {
   return (
-    <section id="hero" className="w-full max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 pt-3 pb-8 flex flex-col justify-start">
+    <section id="hero" className="w-full max-w-[1500px] mx-auto px-4 sm:px-8 lg:px-12 pt-4 pb-12 flex flex-col justify-start relative overflow-hidden">
       
-      {/* Title & Eyebrow Wrapper */}
-      <div className="relative pt-1 pb-2">
-        {/* Tiny Eyebrow */}
-        <div className="text-left pl-1 sm:pl-2 mb-1">
-          <span className="text-[10px] sm:text-[11px] uppercase tracking-[0.28em] text-slate-400 font-semibold">
-            Your · Dream · Property · Awaits
+      {/* Eyebrow & Social Pill Ribbon */}
+      <motion.div 
+        initial={{ opacity: 0, y: 15 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-2 pb-2 pl-1 sm:pl-2 relative z-30"
+      >
+        <div className="flex items-center gap-2">
+          <span className="w-2 h-2 rounded-full bg-emerald-500 animate-ping" />
+          <span className="text-[10px] sm:text-[11px] uppercase tracking-[0.28em] text-slate-500 font-bold">
+            Nano Banana Architectural Series // Vol. 01
           </span>
         </div>
 
-        {/* Giant Modernist Headline "OXIDLabs" in Plus Jakarta Sans */}
-        <h1 className="font-extrabold text-[14.5vw] sm:text-[12.5vw] lg:text-[9.8vw] leading-[0.88] tracking-[-0.038em] text-black select-none pointer-events-none">
-          OXIDLabs
-        </h1>
-
-        {/* Left Social Icons & Architectural Thumbnail Pill */}
-        <div className="flex items-center gap-3 sm:gap-4 mt-2 sm:mt-2.5 pl-1 sm:pl-2">
-          <div className="flex items-center gap-1.5 sm:gap-2">
-            <a
-              href="https://facebook.com"
-              target="_blank"
-              rel="noreferrer"
-              aria-label="Facebook"
-              className="w-7 h-7 rounded-full border border-slate-300 flex items-center justify-center text-xs font-bold text-slate-700 hover:bg-black hover:text-white transition-colors"
-            >
-              f
-            </a>
-            <a
-              href="https://instagram.com"
-              target="_blank"
-              rel="noreferrer"
-              aria-label="Instagram"
-              className="w-7 h-7 rounded-full border border-slate-300 flex items-center justify-center text-xs font-bold text-slate-700 hover:bg-black hover:text-white transition-colors"
-            >
-              <Camera className="w-3.5 h-3.5" />
-            </a>
-            <a
-              href="https://twitter.com"
-              target="_blank"
-              rel="noreferrer"
-              aria-label="Twitter X"
-              className="w-7 h-7 rounded-full border border-slate-300 flex items-center justify-center text-xs font-bold text-slate-700 hover:bg-black hover:text-white transition-colors"
-            >
-              x
-            </a>
+        {/* Floating Capsule Thumbnail */}
+        <div className="flex items-center gap-3">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-100 border border-slate-200/80 shadow-xs">
+            <Sparkles className="w-3.5 h-3.5 text-amber-600" />
+            <span className="text-[11px] text-slate-700 font-semibold tracking-wide">
+              Generative Architecture by Nano Banana
+            </span>
           </div>
-
-          {/* Mini Gallery Capsule */}
-          <Link
-            href="#catalog"
-            className="hidden sm:inline-flex items-center p-1 rounded-full border border-slate-300 bg-white shadow-sm gap-1.5 hover:border-black transition-colors"
-          >
-            <div className="h-6 w-16 relative rounded-full overflow-hidden">
-              <Image
-                src="/images/pill-thumbnails.jpg"
-                alt="Architectural Previews"
-                fill
-                className="object-cover"
-                unoptimized
-              />
-            </div>
-            <span className="text-xs font-semibold pr-2.5 text-slate-600">3 views</span>
-          </Link>
         </div>
-      </div>
+      </motion.div>
 
-      {/* CENTRAL HOUSE SHOWCASE CONTAINER (EXACT HOUSE FROM REFERENCE) */}
-      <div className="relative w-full rounded-[24px] sm:rounded-[36px] lg:rounded-[44px] overflow-hidden shadow-floating mt-3 bg-slate-100 border border-slate-200/80">
+      {/* =========================================================================
+          HERO STAGE: GIANT TEXT "OXID LABS" DIRECTLY BEHIND THE HERO VILLA IMAGE
+          ========================================================================= */}
+      <div className="relative w-full mt-2 sm:mt-4 flex flex-col items-center">
         
-        <div className="relative w-full h-[46vh] sm:h-[53vh] lg:h-[58vh] min-h-[300px] max-h-[660px] overflow-hidden">
-          <Image
-            src="/images/house-container-hd.webp"
-            alt="OXID Cantilever Architectural Villa — Warm Timber & Glass"
-            fill
-            priority
-            className="object-cover object-center filter saturate-[1.04] contrast-[1.02]"
-            unoptimized
-          />
+        {/* BEHIND LAYER: Giant Modernist Text "OXID LABS" in Plus Jakarta Sans */}
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+          className="absolute -top-4 sm:-top-8 lg:-top-12 inset-x-0 w-full flex justify-center items-center pointer-events-none select-none z-0"
+        >
+          <span className="font-extrabold text-[15.5vw] sm:text-[14vw] lg:text-[12.8vw] leading-[0.82] tracking-[-0.045em] text-slate-200 uppercase text-center block w-full drop-shadow-xs">
+            OXID LABS
+          </span>
+        </motion.div>
 
-          {/* Top Left Floating Pill */}
-          <div className="absolute top-4 sm:top-6 left-4 sm:left-6 z-20">
-            <div className="inline-flex items-center gap-2.5 px-4 sm:px-5 py-2 rounded-full bg-white/95 backdrop-blur-md text-black shadow-md border border-white/80 transition-transform hover:scale-102">
-              <svg className="w-3.5 h-3.5 text-black flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                <line x1="12" y1="2" x2="12" y2="22"></line>
-                <line x1="2" y1="12" x2="22" y2="12"></line>
-                <line x1="4.93" y1="4.93" x2="19.07" y2="19.07"></line>
-                <line x1="19.07" y1="4.93" x2="4.93" y2="19.07"></line>
-              </svg>
-              <span className="text-[9px] sm:text-[10px] md:text-[11px] font-bold tracking-wider uppercase text-slate-900">
-                Dedicated to personalized service, finding the perfect home for your family
-              </span>
-            </div>
-          </div>
+        {/* FOREGROUND LAYER: Floating Central Villa Container (Overlaps the Text) */}
+        <motion.div 
+          initial={{ opacity: 0, y: 35 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+          className="relative w-full z-20 mt-12 sm:mt-16 lg:mt-20"
+        >
+          {/* Animated Float Container */}
+          <motion.div
+            animate={{ y: [0, -6, 0] }}
+            transition={{ duration: 6, ease: "easeInOut", repeat: Infinity }}
+            className="w-full relative rounded-[32px] sm:rounded-[44px] overflow-hidden bg-stone-900 border border-slate-200 shadow-2xl group"
+          >
+            {/* The Nano Banana Generated Hero Image */}
+            <div className="relative w-full aspect-[16/9] max-h-[660px] overflow-hidden">
+              <Image
+                src="/images/nano-banana-hero-villa.webp"
+                alt="OXID Labs Nano Banana Modern Cantilever Luxury Villa"
+                fill
+                priority
+                className="object-cover object-center group-hover:scale-[1.02] transition-transform duration-1000 ease-out"
+                sizes="(max-width: 1500px) 100vw, 1500px"
+              />
 
-          {/* Bottom Left Starburst Compass Wireframe */}
-          <div className="absolute bottom-5 sm:bottom-7 left-5 sm:left-7 z-20 pointer-events-none">
-            <div className="starburst-icon">
-              <div className="starburst-inner"></div>
-            </div>
-          </div>
+              {/* Subtle Ambient Film Grain / Gradient Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent pointer-events-none" />
 
-          {/* Bottom Right Floating Stats Cards (Side by Side - Exact Reference) */}
-          <div className="absolute bottom-3 sm:bottom-5 right-3 sm:right-5 z-20 flex items-end gap-2.5 sm:gap-3">
-            
-            {/* Card 1: +300 Reviews with Avatar Stack */}
-            <div className="bg-white/95 backdrop-blur-md rounded-[20px] sm:rounded-[24px] p-3 sm:p-4 shadow-2xl border border-white/80 w-[120px] sm:w-[150px] flex flex-col justify-between hover:translate-y-[-2px] transition-transform">
-              <div>
-                <h4 className="font-black text-2xl sm:text-3xl text-black leading-none mb-1">+300</h4>
-                <p className="text-[9px] sm:text-[10px] text-slate-500 leading-snug font-medium mb-2.5">
-                  clients have left positive reviews about our work.
-                </p>
-              </div>
-              <div className="flex items-center -space-x-2 pt-1">
-                <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-full overflow-hidden border-2 border-white shadow-sm relative">
-                  <Image src="/images/avatar-dedy.webp" alt="Client 1" fill className="object-cover" unoptimized />
-                </div>
-                <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-full overflow-hidden border-2 border-white shadow-sm relative">
-                  <Image src="/images/avatar-sari.webp" alt="Client 2" fill className="object-cover" unoptimized />
-                </div>
-                <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-full overflow-hidden border-2 border-white shadow-sm relative">
-                  <Image src="/images/avatar-nabila.webp" alt="Client 3" fill className="object-cover" unoptimized />
-                </div>
-              </div>
-            </div>
-
-            {/* Card 2: 274 Cottages Built with Thumbnail & Arrow Button */}
-            <div className="bg-white/95 backdrop-blur-md rounded-[20px] sm:rounded-[24px] p-3 sm:p-4 shadow-2xl border border-white/80 w-[120px] sm:w-[150px] flex flex-col justify-between hover:translate-y-[-2px] transition-transform">
-              <div>
-                <div className="w-full h-10 sm:h-12 rounded-xl overflow-hidden mb-2 border border-slate-100 relative">
-                  <Image src="/images/cottage-thumb.jpg" alt="Modern Cottage" fill className="object-cover" unoptimized />
-                </div>
-                <h4 className="font-black text-2xl sm:text-3xl text-black leading-none mb-1">274</h4>
-                <p className="text-[9px] sm:text-[10px] text-slate-500 leading-snug font-medium mb-2.5">
-                  cottages have been built since 2021. 87% are already rented or sold
-                </p>
-              </div>
-              <Link
-                href="#catalog"
-                aria-label="Explore Built Cottages"
-                className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-black text-white flex items-center justify-center self-end hover:scale-110 transition-transform"
+              {/* Top Left Floating Spec Pill */}
+              <motion.div 
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.5, duration: 0.6 }}
+                className="absolute top-4 sm:top-7 left-4 sm:left-7 z-30"
               >
-                <ArrowUpRight className="w-4 h-4" />
-              </Link>
-            </div>
-          </div>
+                <div className="inline-flex items-center gap-2.5 px-4 sm:px-5 py-2.5 rounded-full bg-white/95 backdrop-blur-md text-black shadow-lg border border-white/80 transition-transform hover:scale-105">
+                  <div className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
+                  <span className="text-[11px] sm:text-xs font-bold uppercase tracking-wider">
+                    The Nano Sanctuary Villa
+                  </span>
+                  <span className="text-[10px] text-slate-400 font-medium hidden sm:inline">
+                    • Type 420 m²
+                  </span>
+                </div>
+              </motion.div>
 
-          {/* Bottom Center Curved Cutout Notch */}
-          <div className="bottom-cutout hidden sm:block"></div>
-        </div>
+              {/* Bottom Left Starburst Compass Wireframe */}
+              <div className="absolute bottom-5 sm:bottom-8 left-5 sm:left-8 z-30 flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full bg-black/40 backdrop-blur-md border border-white/20 flex items-center justify-center text-white">
+                  <Compass className="w-5 h-5 text-white/90 animate-[spin_24s_linear_infinite]" />
+                </div>
+                <div className="text-white drop-shadow-md hidden sm:block">
+                  <p className="text-[11px] font-bold uppercase tracking-widest text-white/90">South Ridge Facing</p>
+                  <p className="text-[10px] text-white/70">360° Panoramic Light</p>
+                </div>
+              </div>
+
+              {/* Bottom Right Floating Stats Cards (Exact Reference Style) */}
+              <div className="absolute bottom-4 sm:bottom-6 right-4 sm:right-6 z-30 flex items-center gap-2 sm:gap-3.5">
+                {/* Card 1: Reviews with Avatar Stack */}
+                <motion.div 
+                  initial={{ opacity: 0, y: 15 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.6, duration: 0.5 }}
+                  className="bg-white/95 backdrop-blur-md border border-white/80 rounded-2xl sm:rounded-3xl p-3 sm:p-4 shadow-xl flex flex-col justify-between"
+                >
+                  <div className="flex items-center gap-1.5 sm:gap-2 mb-2">
+                    <span className="text-amber-500 text-xs">★★★★★</span>
+                    <span className="text-[10px] font-bold text-slate-500">4.9 / 5.0</span>
+                  </div>
+                  <div>
+                    <h4 className="font-extrabold text-xl sm:text-2xl text-black leading-none mb-1">+350</h4>
+                    <p className="text-[9px] sm:text-[10px] text-slate-500 font-medium">Ulasan Pemilik Villa</p>
+                  </div>
+                </motion.div>
+
+                {/* Card 2: 274 Cottages Built with Action Button */}
+                <motion.div 
+                  initial={{ opacity: 0, y: 15 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.7, duration: 0.5 }}
+                  className="bg-white/95 backdrop-blur-md border border-white/80 rounded-2xl sm:rounded-3xl p-3 sm:p-4 shadow-xl flex flex-col justify-between min-w-[130px] sm:min-w-[160px]"
+                >
+                  <div className="flex items-center justify-between gap-2 mb-2">
+                    <span className="text-[9px] font-bold uppercase tracking-wider text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
+                      Terbangun
+                    </span>
+                    <Link
+                      href="/catalog"
+                      className="w-6 h-6 rounded-full bg-black text-white hover:bg-emerald-600 flex items-center justify-center transition-colors"
+                      title="Lihat Semua Properti"
+                    >
+                      <ArrowUpRight className="w-3.5 h-3.5" />
+                    </Link>
+                  </div>
+                  <div>
+                    <h4 className="font-extrabold text-xl sm:text-2xl text-black leading-none mb-1">274</h4>
+                    <p className="text-[9px] sm:text-[10px] text-slate-500 font-medium">Unit Hunian Terkurasi</p>
+                  </div>
+                </motion.div>
+              </div>
+
+              {/* Bottom Center Curved Notch */}
+              <div className="bottom-cutout hidden md:block" />
+            </div>
+          </motion.div>
+        </motion.div>
       </div>
 
       {/* Quick Specs Ribbon Directly Below House */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-5 pt-4 border-t border-slate-100 text-xs text-slate-600 font-medium">
-        <div className="flex items-center gap-2">
-          <span className="w-2 h-2 rounded-full bg-black"></span>
-          <span><strong>Architecture:</strong> Cantilevered Timber & Steel</span>
+      <motion.div 
+        initial={{ opacity: 0, y: 15 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+        className="mt-6 sm:mt-8 w-full max-w-4xl mx-auto grid grid-cols-2 sm:grid-cols-4 gap-3 text-center"
+      >
+        <div className="p-4 rounded-2xl bg-slate-50 border border-slate-100 hover:border-slate-300 transition-colors">
+          <p className="text-[10px] uppercase font-bold text-slate-400 tracking-wider">Desain Struktur</p>
+          <p className="text-sm font-extrabold text-black mt-1">Cantilever Wood & Glass</p>
         </div>
-        <div className="flex items-center gap-2">
-          <span className="w-2 h-2 rounded-full bg-amber-700"></span>
-          <span><strong>Glazing:</strong> Acoustic Schüco Triple-Glazed</span>
+        <div className="p-4 rounded-2xl bg-slate-50 border border-slate-100 hover:border-slate-300 transition-colors">
+          <p className="text-[10px] uppercase font-bold text-slate-400 tracking-wider">Efisiensi Energi</p>
+          <p className="text-sm font-extrabold text-black mt-1">Smart Solar Array 12kW</p>
         </div>
-        <div className="flex items-center gap-2">
-          <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
-          <span><strong>Certification:</strong> Net-Zero Energy Ready</span>
+        <div className="p-4 rounded-2xl bg-slate-50 border border-slate-100 hover:border-slate-300 transition-colors">
+          <p className="text-[10px] uppercase font-bold text-slate-400 tracking-wider">Sertifikasi Hijau</p>
+          <p className="text-sm font-extrabold text-black mt-1">Platinum Eco-Living</p>
         </div>
-        <div className="flex items-center gap-2">
-          <span className="w-2 h-2 rounded-full bg-blue-500"></span>
-          <span><strong>Location:</strong> South Ridge Boulevard</span>
+        <div className="p-4 rounded-2xl bg-slate-50 border border-slate-100 hover:border-slate-300 transition-colors">
+          <p className="text-[10px] uppercase font-bold text-slate-400 tracking-wider">Akses Kawasan</p>
+          <p className="text-sm font-extrabold text-black mt-1">Private Gated Estate</p>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 };

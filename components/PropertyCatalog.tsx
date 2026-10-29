@@ -2,6 +2,8 @@
 
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
+import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
 import { Property } from "@/lib/types";
 
 interface PropertyCatalogProps {
@@ -201,6 +203,17 @@ export const PropertyCatalog: React.FC<PropertyCatalogProps> = ({
             ))}
           </div>
         )}
+
+        {/* Bottom CTA to Dedicated Full Catalog Page */}
+        <div className="mt-14 text-center">
+          <Link
+            href="/catalog"
+            className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-black text-white hover:bg-slate-800 font-bold text-xs uppercase tracking-wider transition-all shadow-md hover:scale-105"
+          >
+            <span>Jelajahi Semua Mahakarya di Halaman Katalog</span>
+            <ArrowUpRight className="w-4 h-4 text-emerald-400" />
+          </Link>
+        </div>
       </div>
     </section>
   );

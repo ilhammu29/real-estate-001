@@ -13,7 +13,7 @@ export const initialProperties: Property[] = [
     buildingArea: 420,
     bedrooms: 4,
     bathrooms: 5,
-    image: "/images/house-container-hd.webp",
+    image: "/images/nano-banana-hero-villa.webp",
     badge: "OXID Signature",
     description: "Villa ikonik 2 lantai berkonsep kantilever kayu cedar hangat dengan dinding kaca akustik panoramic 360°, teras beton bertingkat, dan inner garden privat.",
     features: [
