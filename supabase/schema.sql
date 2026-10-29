@@ -1,5 +1,5 @@
 -- =======================================================
--- NENYAHOME SUPABASE DATABASE SCHEMA
+-- OXID LABS SUPABASE DATABASE SCHEMA
 -- Execute this script in your Supabase SQL Editor
 -- =======================================================
 
