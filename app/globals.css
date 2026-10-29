@@ -1,0 +1,144 @@
+@import "tailwindcss";
+
+@layer base {
+  * {
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: #FFFFFF;
+    color: #0A0A0A;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow-x: hidden;
+  }
+}
+
+/* Center Black Notch in Header */
+.header-notch {
+  background-color: #0A0A0A;
+  border-bottom-left-radius: 26px;
+  border-bottom-right-radius: 26px;
+  position: relative;
+}
+
+.header-notch::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -20px;
+  width: 20px;
+  height: 20px;
+  background: radial-gradient(circle at 0 100%, transparent 20px, #0A0A0A 20.5px);
+}
+.header-notch::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: -20px;
+  width: 20px;
+  height: 20px;
+  background: radial-gradient(circle at 100% 100%, transparent 20px, #0A0A0A 20.5px);
+}
+
+/* Bottom Center Notch on House Container */
+.bottom-cutout {
+  position: absolute;
+  bottom: -1px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 180px;
+  height: 24px;
+  background-color: #FFFFFF;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  z-index: 10;
+}
+.bottom-cutout::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: -16px;
+  width: 16px;
+  height: 16px;
+  background: radial-gradient(circle at 0 0, transparent 16px, #FFFFFF 16.5px);
+}
+.bottom-cutout::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: -16px;
+  width: 16px;
+  height: 16px;
+  background: radial-gradient(circle at 100% 0, transparent 16px, #FFFFFF 16.5px);
+}
+
+/* Eight-Point Starburst Wireframe Icon */
+.starburst-icon {
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  position: relative;
+}
+.starburst-icon::before, .starburst-icon::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 1.5px;
+  background-color: rgba(255, 255, 255, 0.75);
+  transform: translate(-50%, -50%);
+}
+.starburst-icon::after {
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+.starburst-inner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 70%;
+  height: 1.5px;
+  background-color: rgba(255, 255, 255, 0.55);
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+.starburst-inner::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.55);
+  transform: rotate(90deg);
+}
+
+/* Custom Range Slider */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  background: #E2E8F0;
+  height: 6px;
+  border-radius: 4px;
+  outline: none;
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #0A0A0A;
+  cursor: pointer;
+  border: 3px solid #FFFFFF;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+  transition: transform 0.15s ease;
+}
+input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+}
